@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
-    <link rel="stylesheet" href="/assets/css/client.css">
+    <link rel="stylesheet" href="{{asset('assets/css/client.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/sweetalert2.css')}}">
     <link rel="stylesheet" href="{{asset('assets/font/css/all.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/bootstrap-5.3.6-dist/css/bootstrap.min.css')}}">
@@ -25,6 +25,7 @@
                 display: none;
             }
         }
+        
     </style>
 </head>
 
@@ -34,7 +35,7 @@
     <main class="main-content shadow-sm">
         <div class="container-content">
             <div class="phone">
-
+                 
                 @yield('content')
 
                 @include('layouts.bottom-nav')
@@ -42,7 +43,7 @@
             </div>
         </div>
     </main>
-
+    
     <script src="{{asset('assets/js/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('assets/js/profilecard.js')}}"></script>
     <script src="{{asset('assets/js/darkmode.js')}}"></script>
