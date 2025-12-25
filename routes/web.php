@@ -210,8 +210,8 @@ Route::get('/admin_login', [AdminPageController::class, 'showLogin'])->name('adm
 Route::post('/admin_login', [AdminPageController::class, 'login']);
 
 
-Route::get('/admin_signup', [AdminPageController::class, 'showSignup'])->name('admin_signup');
-Route::post('/admin_signup', [AdminPageController::class, 'signup'])->name('admin_signup');
+Route::get('/admin_signup', [AdminPageController::class, 'showSignup'])->name('showSignup');
+Route::post('/admin_signup/admin', [AdminPageController::class, 'signup'])->name('register');
 
 
 //=========Admin Module route==========
