@@ -11,7 +11,7 @@
         <a href="/myprofile"><img src="{{ asset('uploads/patients/' . $patient->image) }}" class="avatar" alt=""></a>
         @endif
         <div>
-          <small class="text">Welcome Back</small><br>
+          <small class="text">Welcome</small><br>
           <strong class="sub-heading">{{$patient->name}}</strong>
         </div>
       </div>
