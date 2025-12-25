@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\URL;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -30,6 +30,10 @@ class AppServiceProvider extends ServiceProvider
             'doctor' => Doctor::class,
             'patient' => Patient::class,
         ]);
+
+        if (config('app.env') === 'production') {
+            URL::forceScheme('https');
+        }
 
         View::composer('*', function ($view) {
             $user_admin = Auth::guard('admin')->user();
