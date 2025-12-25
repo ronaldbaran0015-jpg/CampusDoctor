@@ -14,7 +14,6 @@
 <body>
     <button id="darkSwitch" class="dark-mode-delegate" style="display: none;"></button>
     @yield('content')
-
     <script src="{{asset('assets/js/darkmode.js')}}"></script>
     <script src="{{asset('assets/js/sweetalert2.all.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

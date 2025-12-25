@@ -1,12 +1,31 @@
 @extends('layouts.base')
 @section('title','Doctors')
 @section('content')
+<style>
+  .modal,
+  .modal-dialog,
+  .modal-body,
+  .modal-body select,
+  .modal-header,
+  .modal-footer {
+    background: var(--outgoing-bg) !important;
+    color: var(--txt-color) !important;
+  }
 
+  .modal-content {
+    border: 1px solid var(--txt-color);
+  }
+
+  .modal-header button {
+    color: var(--txt-color) !important;
+
+  }
+</style>
 <section class="viewport p-3" id="doctor-section">
   <header class="header mb-4">
     <a href="javascript:history.back()" class="nav-link"> <i class="fa fa-chevron-left"></i></a>
     <span class="mx-auto">Doctors</span>
-       <button class="border-0 filter-btn" type="button" data-bs-toggle="modal"
+    <button class="border-0 filter-btn" type="button" data-bs-toggle="modal"
       data-bs-target="#filterModal">
       <svg width="25px" height="25px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <title>Filter</title>
@@ -47,7 +66,7 @@
       <i class="bx bx-search"></i>
     </div>
     <button class="btn btn-primary search-btn"><i class="fa fa-search" style="width: 20px; height: 20px;"></i></button>
- 
+
   </form>
 
   <!-- <form class="d-flex gap-2 search-bar mb-2" onsubmit="event.preventDefault();">
@@ -116,16 +135,16 @@
 </section>
 <form method="GET" action="{{ route('mydoctor') }}">
 
-  <div class="modal fade" id="filterModal" tabindex="-1">
+  <div class="modal fade bg-dark" id="filterModal" tabindex="-1">
     <div class="modal-dialog modal-fullscreen-sm-down modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
 
-        <div class="modal-header">
+        <div class="modal-header d-flex justify-content-between align-items-center">
           <h5 class="modal-title fw-bold">Filter Doctors</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          <button type="button" class="btn" data-bs-dismiss="modal"><i class="fa fa-times fs-3"></i></button>
         </div>
 
-        <div class="modal-body">
+        <div class="modal-body no-scroll">
 
           <!-- Specialty -->
           <div class="mb-3">
@@ -152,7 +171,7 @@
           <!-- Availability -->
           <div class="mb-3">
             <label class="fw-semibold mb-2">Availability</label>
-            <select class="form-select" name="availability">
+            <select class="form-select form-control" name="availability">
               <option value="">Any</option>
               <option value="today" {{ request('availability')=='today'?'selected':'' }}>Today</option>
               <option value="week" {{ request('availability')=='week'?'selected':'' }}>This Week</option>
@@ -164,7 +183,7 @@
           <!-- Rating -->
           <div class="mb-3">
             <label class="fw-semibold mb-2">Rating</label>
-            <select class="form-select" name="rating">
+            <select class="form-select form-control" name="rating">
               <option value="">Any</option>
               <option value="4.5" {{ request('rating')=='4.5'?'selected':'' }}>⭐ 4.5+</option>
               <option value="4.0" {{ request('rating')=='4.0'?'selected':'' }}>⭐ 4.0+</option>

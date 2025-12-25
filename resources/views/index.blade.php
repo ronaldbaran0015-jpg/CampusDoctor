@@ -34,7 +34,7 @@
     <footer class="site-footer">
         <p class="hero-subtext text-center">A Web Solution By Team RJ45</p>
     </footer>
-    <script src="{{asset('assets/bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="/assets/bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
     <script>
         gsap.set(".hero-title, .hero-subtext, .hero-content .btn", {
