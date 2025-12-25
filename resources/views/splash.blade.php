@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{asset('assets/css/splash.css')}}" />
+    <link rel="stylesheet" href="/assets/css/splash.css" />
     <link rel="shortcut icon" href="{{asset('assets/img/Logo.png')}}" type="image/x-icon">
-    <link rel="stylesheet" href="{{asset('assets/bootstrap-5.3.6-dist/css/bootstrap.min.css')}}" />
 </head>
 <body>
     <main class="bg">
