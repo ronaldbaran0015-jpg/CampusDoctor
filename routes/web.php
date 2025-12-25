@@ -132,7 +132,6 @@ Route::post('/reset-password', [ForgotPasswordController::class, 'reset'])->name
 //=====================================================
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-
 // For Updating Password
 Route::put('/updatePassword', [ChangePasswordController::class, 'updatePassword'])->name('password.updatePassword');
 Route::get('/myhome', [ClientController::class, 'myhome'])
@@ -209,9 +208,6 @@ Route::middleware('auth:patient')->group(function () {
 //=====================================================
 Route::get('/admin_login', [AdminPageController::class, 'showLogin'])->name('admin_login');
 Route::post('/admin_login', [AdminPageController::class, 'login']);
-
-Route::get('/admin_signup', [AdminPageController::class, 'showSignup'])->name('admin_signup');
-Route::post('/admin_signup', [AdminPageController::class, 'signup'])->name('admin_signup');
 
 //=========Admin Module route==========
 Route::middleware('auth:admin')->group(
