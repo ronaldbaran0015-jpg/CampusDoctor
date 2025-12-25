@@ -1,0 +1,110 @@
+@extends('layouts.app')
+@section('title', 'Schedule List')
+@section('content')
+<section class="content-wrapper">
+    <div class="container-fluid">
+        <article class="d-flex align-items-center  justify-content-between gap-5 mb-4">
+            <h4 class="top-heading mb-0">Upcoming Appointments</h4>
+            <div class="custom-dt-toolbar">
+                <input type="search" id="tableSearch" class="form-control w-100" placeholder="Search...">
+            </div>
+        </article>
+
+        <div class="dashboard-table-container" style="background-color: var(--outgoing-bg); color:var(--txt-color);">
+            <div class="dashboard-table-header">
+                <h3 class="dashboard-table-title" style="color:var(--txt-color);">Appointment table</h3>
+                <a href="#" class="btn btn-secondary">View All</a>
+            </div>
+            <div class="table-responsive">
+
+                <table id="usersTable" class="dashboard-table table align-middle table-hover border">
+
+                    <thead>
+                        <tr>
+                            <th style="background-color: var(--outgoing-bg); color:var(--txt-color);" class="text-center">Patient</th>
+                            <th style="background-color: var(--outgoing-bg); color:var(--txt-color);" class="text-center">Session Title</th>
+                            <th style="background-color: var(--outgoing-bg); color:var(--txt-color);" class="text-center">Date</th>
+                            <th style="background-color: var(--outgoing-bg); color:var(--txt-color);" class="text-center">Time</th>
+                            <th style="background-color: var(--outgoing-bg); color:var(--txt-color);" class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($appointments as $appointment)
+                        <tr class="text-start">
+                            <td style="background-color: var(--outgoing-bg); color:var(--txt-color);">
+                                <div class="table-title-cell">
+                                    <div class="table-icon">
+                                        <span class="material-symbols-rounded">{{ $loop->iteration }}</span>
+                                    </div>
+
+                                    <div class="table-info">
+                                        <div class="table-title-text">{{ $appointment->patient->name }}</div>
+
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="background-color: var(--outgoing-bg); color:var(--txt-color);" class="text-center"><span class="status-badge success">{{$appointment->schedule->title}}</span></td>
+                            <td style="background-color: var(--outgoing-bg); color:var(--txt-color);" class="text-center"><span class="status-badge error">{{ \Carbon\Carbon::parse($appointment->appodate)->format('F d, Y')}}</span></td>
+                            <td style="background-color: var(--outgoing-bg); color:var(--txt-color);" class="text-center">
+                                <span class="status-badge warning">
+                                    {{ \Carbon\Carbon::parse($appointment->start_time)->format('h:i A') }}
+                                    -
+                                    {{ \Carbon\Carbon::parse($appointment->end_time)->format('h:i A') }}
+                                </span>
+                            </td>
+
+                            <td style="background-color: var(--outgoing-bg); color:var(--txt-color);" class="text-center">
+                                @php
+                                $appointmentDate = \Carbon\Carbon::parse($appointment->appodate);
+                                $startTime = \Carbon\Carbon::parse($appointment->start_time);
+                                $endTime = \Carbon\Carbon::parse($appointment->end_time);
+                                $isDisabled = $appointmentDate->isToday() && $startTime->isPast() && $endTime->isPast();
+                                @endphp
+                                @if ($isDisabled)
+                                <form method="post" action="{{route('markMissed', $appointment->appoid)}}}">
+                                    @csrf
+                                    <button class="btn btn-danger" onclick="return confirm('Mark this as missed?')">Mark missed</button>
+                                </form>
+                                @else
+                                <button class="btn btn-primary" disabled>Is Upcoming</button>
+                                @endif
+
+                            </td>
+
+
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function() {
+        const table = $('#usersTable').DataTable({
+            scrollX: false,
+            pagingType: 'simple_numbers',
+            dom: 'rt<"d-flex justify-content-between align-items-center p-2"lip>',
+            columnDefs: [{
+                orderable: false,
+                targets: [1, 2, 3] // Make columns 1, 2, and 3 not orderable
+            }, {
+                type: 'num',
+                targets: 0 // Treat the first column as numbers
+            }],
+            order: [
+                [0, 'asc']
+            ], // Order by the first column in ascending order
+        });
+        $('#tableSearch').on('keyup', function() {
+            table.search(this.value).draw();
+        });
+    });
+</script>
+
+@endsection

@@ -1,0 +1,399 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+
+}
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fff;
+}
+
+:root {
+    /* ===== Colors ===== */
+    --accent-color: #407ef8;
+    --black-light-color: #707070;
+    --light-color: #fff;
+    --dark-txt-color: #000;
+    --gray-txt-color: #555;
+    --radius: 8px;
+    --dur: .25s;
+}
+
+/* Text sizes */
+.top-heading {
+    font-size: 1.6em;
+}
+
+.heading,.sub-heading {
+    font-size: 1.4em;
+}
+
+li,
+p,
+small,
+span,
+a {
+    font-size: 1em;
+}
+
+
+/*==========================LOGIN SIGNUP FORM============================ */
+
+.form-step {
+    display: none;
+}
+
+.form-step.active {
+    display: block;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutLeft {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+
+.login-wrapper,
+.signup-wrapper {
+    min-height: 100vh;
+    display: flex;
+    margin-bottom: 0;
+    height: 100%;
+
+}
+
+.image-panel {
+    position: relative;
+    flex: 0 0 50%;
+    background: url('../img/Urgent-Doctor-Appointment.png') center center no-repeat;
+    background-size: cover;
+}
+
+.image-panel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(22, 16, 39, .25) 0%, rgba(22, 16, 39, .95) 100%);
+}
+
+.slider {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 30%;
+    padding: 24px;
+    z-index: 1;
+}
+
+
+.brand-logo img {
+    width: 20%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.brand-name {
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: .04em;
+    color: var(--light-color);
+}
+
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, .15);
+    padding: 6px 14px;
+    border-radius: var(--radius);
+    font-size: 13px;
+    backdrop-filter: blur(4px);
+    transition: background var(--dur);
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, .25);
+}
+
+.tagline {
+    font-size: 20px;
+    font-weight: 500;
+    max-width: 18ch;
+    line-height: 1.3;
+    color: var(--light-color);
+}
+
+.dots {
+    display: flex;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+.dot {
+    width: 28px;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, .25);
+}
+
+.dot.active {
+    background: var(--light-color);
+}
+
+/* FORM CONTAINER */
+
+.login-form-container,
+.sign-form-container {
+    flex: 1;
+    /* background: var(--panel-color); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    /* box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); */
+    padding: 0 20px;
+}
+/* FORM */
+.form {
+    width: 100%;
+    max-width: 450px;
+    padding: 10px;
+    margin-top: 0;
+    padding-top: 0;
+    overflow: hidden;
+}
+
+/* FORM TEXT */
+
+.form h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: var(--dark-txt-color);
+    text-align: center;
+}
+
+
+.form p {
+    font-size: 16px;
+    color: var(--gray-txt-color);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.form label {
+    font-weight: 500;
+    color: var(--gray-txt-color);
+}
+
+ .form-control {
+     border: none;
+     outline: none;
+     font-size: 16px;
+     border-bottom: 2px solid #ccc;
+     border-radius: 0;
+     transition: all 0.2s ease;
+ }
+
+ .form-floating i {
+     color: #999;
+     font-size: 20px;
+ }
+
+ .form-control:focus {
+     box-shadow: none;
+
+ }
+ 
+
+ 
+.form .input-field {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin-top: 32px;
+}
+
+.input-field input {
+    height: 100%;
+    width: 100%;
+    padding: 0 35px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    border-bottom: 2px solid #ccc;
+    border-top: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.input-field input:is(:focus) {
+    border-bottom-color: var(--accent-color);
+}
+
+.input-field i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 20px;
+    transition: all 0.2s ease;
+}
+
+.input-field input:is(:focus)~i {
+    color: var(--accent-color);
+}
+
+.input-field i.icon {
+    left: 0;
+}
+
+#showHidePw {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.eye-icon {
+    width: 20px;
+    height: 20px;
+    color: #999;
+    transition: all 0.2s ease;
+}
+
+/* Hide helper class if not using Tailwind */
+.d-none {
+    display: none;
+}
+
+.input-field input:is(:focus)~.showHidePw .eye-icon {
+    color: var(--accent-color);
+}
+/* BUTTONS */
+.form .primary-button {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    font-weight: 600;
+    margin-top: 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    
+}
+.form .secondary-button {
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    font-weight: 600;
+    margin-top: 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    
+}
+
+
+
+/* FORM FOOTER */
+.form .footer {
+    font-size: 15px;
+    text-align: center;
+    margin-top: 15px;
+    color: #555;
+}
+
+.form .footer a {
+    color: var(--accent-color);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.form .footer a:hover {
+    text-decoration: underline;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+    .image-panel {
+
+        flex: 0 0 30%;
+    }
+    .login-wrapper,
+    .signup-wrapper {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .form {
+        max-width: 400px;
+    }
+
+    .form .input-field {
+        margin-top: 20px;
+    }
+
+    .login-form-container,
+    .sign-form-container {
+        padding: 20px;
+    }
+
+    .image-panel {
+        border-radius: 0;
+        height: 100%;
+    }
+}

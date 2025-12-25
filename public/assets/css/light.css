@@ -1,0 +1,86 @@
+/*========================================================
+                          LIGHTBOX
+========================================================= */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 999;
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.lightbox-content h4 {
+    text-align: center;
+}
+
+.lightbox.active .lightbox-content {
+    transform: scale(1);
+}
+
+.lightbox-content input,
+.textarea {
+    width: 100%;
+   padding: 7px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: 0;
+}
+
+.lightbox .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+
+
+.lightbox .actions button {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+
+}
+
+.lightbox .actions a.cancel {
+    background-color: #aaa;
+    margin: 0 5px;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+@media (max-width: 520px) {
+    #toggler {
+        right: 90px;
+        bottom: 20px;
+    }
+}
