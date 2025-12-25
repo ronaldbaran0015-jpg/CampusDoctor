@@ -209,6 +209,11 @@ Route::middleware('auth:patient')->group(function () {
 Route::get('/admin_login', [AdminPageController::class, 'showLogin'])->name('admin_login');
 Route::post('/admin_login', [AdminPageController::class, 'login']);
 
+
+Route::get('/admin_signup', [AdminPageController::class, 'showSignup'])->name('admin_signup');
+Route::post('/admin_signup', [AdminPageController::class, 'signup'])->name('admin_signup');
+
+
 //=========Admin Module route==========
 Route::middleware('auth:admin')->group(
     function () {
