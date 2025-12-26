@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Backend URL encoded
-    const backendURL = `http://campusdoctor-production-1c28.up.railway.app/appointment/verify/${appoid}`;
+    const backendURL = `http://10.124.222.44:8000/appointment/verify/${appoid}`;
 
     // Online QR API
     const apiQR = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(backendURL)}`;
